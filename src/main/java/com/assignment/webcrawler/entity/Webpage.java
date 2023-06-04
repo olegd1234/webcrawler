@@ -19,10 +19,10 @@ public class Webpage {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "APIUSERS_PK_SEQ")
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 2048)
+    @Column(nullable = false, unique = true, length = 4096)
     private String url;
 
-    @Column(length = 2048)
+    @Column(length = 4096)
     private String title;
 
 }

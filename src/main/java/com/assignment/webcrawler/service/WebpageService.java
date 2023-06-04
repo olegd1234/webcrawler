@@ -61,7 +61,7 @@ public class WebpageService {
                 break;
             }
 
-            extractLinksAndAddUniqueUrls(htmlDocument, urlsToCrawl, urlToWebpageMap.keySet());
+            extractLinksAndAddUniqueUrls(url, htmlDocument, urlsToCrawl, urlToWebpageMap.keySet());
         }
 
         return new ArrayList<>(urlToWebpageMap.values());
@@ -83,9 +83,10 @@ public class WebpageService {
         return webpage;
     }
 
-    private void extractLinksAndAddUniqueUrls(Document htmlDocument, Set<String> urlsToCrawl, Set<String> strings) {
+    private void extractLinksAndAddUniqueUrls(String documentUrl, Document htmlDocument, Set<String> urlsToCrawl, Set<String> strings) {
         Elements linksOnPage = htmlDocument.select("a[href]");
-        System.out.println("Found (" + linksOnPage.size() + ") links");
+        log.info("Found {} links in ({})", linksOnPage.size(), documentUrl);
+        System.out.println();
         for (Element link : linksOnPage) {
             String url = link.absUrl("href");
             if (!strings.contains(url)) {
